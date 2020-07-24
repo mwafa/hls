@@ -13,7 +13,7 @@ jobs:
       - name: Install FFMPEG
         run: sudo apt-get update && sudo apt-get install ffmpeg
       - name: Build
-        run: hls.sh sample.mp4 sample
+        run: sh hls.sh sample.mp4 sample
       - name: Make Commit
         run: |
           git config user.name github-actions
