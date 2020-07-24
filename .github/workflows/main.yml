@@ -11,13 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install FFMPEG
-        run: apt-get update && apt-get install ffmpeg
+        run: sudo apt-get update && sudo apt-get install ffmpeg
       - name: Build
         run: hls.sh sample.mp4 sample
       - name: Make Commit
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git branch gh-pages
+          git checkout gh-pages
           git add .
           git commit -m "[auto] Generate HLS File"
           git push
