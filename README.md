@@ -1,2 +1,7 @@
-## Topic
-https://github.com/videojs/videojs-contrib-hls/issues/519
+# Test
+
+Copy file to current folder, and run `hls.sh` to generate all video part.
+
+```bash
+sh hls.sh sample.mp4 sample
+```
