@@ -2,7 +2,7 @@ name: FFMPEG
 
 on:
   push:
-    branches: [gh-pages]
+    branches: [master]
 
 jobs:
   build:
@@ -10,16 +10,25 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+
       - name: Install FFMPEG
         run: sudo apt-get update && sudo apt-get install ffmpeg
-      - name: Remove old sample
-        run: rm -rf sample
-      - name: Build
-        run: sh hls.sh sample.mp4 sample
-      - name: Make Commit
+
+      - name: Merge from master
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+
+      - name: Remove old sample
+        run: rm -rf sample
+
+      - name: Build
+        run: sh hls.sh sample.mp4 sample
+
+      - name: Make Commit
+        run: |
           git add .
           git commit -m "[auto] Generate HLS File"
           git push
