@@ -6,21 +6,19 @@ on:
 
 jobs:
   build:
-    name: build hls
+    name: Build
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: gh-pages
-
-      - name: Install FFMPEG
-        run: sudo apt-get update && sudo apt-get install ffmpeg
-
-      - name: Merge from master
+        name: Merge from master
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git checkout gh-pages
           git merge master
+
+      - name: Install FFMPEG
+        run: sudo apt-get update && sudo apt-get install ffmpeg
 
       - name: Remove old sample
         run: rm -rf sample
