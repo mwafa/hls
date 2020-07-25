@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Merge from master
         run: |
@@ -17,7 +19,7 @@ jobs:
           git config user.email github-actions@github.com
           git fetch --all
           git checkout gh-pages
-          git merge master
+          git merge master --no-ff
 
       - name: Install FFMPEG
         run: sudo apt-get update && sudo apt-get install ffmpeg
