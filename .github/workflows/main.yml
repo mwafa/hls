@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-        name: Merge from master
+
+      - name: Merge from master
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
