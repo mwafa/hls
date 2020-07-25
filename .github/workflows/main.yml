@@ -7,13 +7,11 @@ on:
 jobs:
   build:
     name: build hls
-    # runs-on: ubuntu-20.04
-    runs-on: macos-latest
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
       - name: Install FFMPEG
-        # run: sudo apt-get update && sudo apt-get install ffmpeg
-        run: brew install ffmpeg
+        run: sudo apt-get update && sudo apt-get install ffmpeg
       - name: Remove old sample
         run: rm -rf sample
       - name: Build
