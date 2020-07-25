@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install FFMPEG
         # run: sudo apt-get update && sudo apt-get install ffmpeg
-        run: sudo brew install ffmpeg
+        run: brew install ffmpeg
       - name: Remove old sample
         run: rm rf sample
       - name: Build
