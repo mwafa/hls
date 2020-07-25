@@ -20,6 +20,7 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git merge master
 
       - name: Remove old sample
         run: rm -rf sample
