@@ -7,11 +7,15 @@ on:
 jobs:
   build:
     name: build hls
-    runs-on: ubuntu-20.04
+    # runs-on: ubuntu-20.04
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Install FFMPEG
-        run: sudo apt-get update && sudo apt-get install ffmpeg
+        # run: sudo apt-get update && sudo apt-get install ffmpeg
+        run: sudo brew install ffmpeg
+      - name: Remove old sample
+        run: rm rf sample
       - name: Build
         run: sh hls.sh sample.mp4 sample
       - name: Make Commit
