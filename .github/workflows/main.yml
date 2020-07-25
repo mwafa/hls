@@ -15,7 +15,7 @@ jobs:
         # run: sudo apt-get update && sudo apt-get install ffmpeg
         run: brew install ffmpeg
       - name: Remove old sample
-        run: rm rf sample
+        run: rm -rf sample
       - name: Build
         run: sh hls.sh sample.mp4 sample
       - name: Make Commit
