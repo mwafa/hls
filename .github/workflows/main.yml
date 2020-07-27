@@ -22,13 +22,20 @@ jobs:
           git merge master --no-ff
 
       - name: Install FFMPEG
-        run: sudo apt-get update && sudo apt-get install ffmpeg
+        run: sudo apt-get update && sudo apt-get install ffmpeg curl
+
+      - name: Download sample video
+        run: |
+          curl -o movie.mp4 http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
+          ffmpeg -i movie.mp4 -ss 00:00:00 -t 00:00:58 -async 1 sample.mp4
 
       - name: Remove old sample
         run: rm -rf sample
 
       - name: Build
-        run: sh hls.sh sample.mp4 sample
+        run: |
+          sh hls.sh sample.mp4 sample
+          rm movie.mp4 sample.mp4
 
       - name: Make Commit
         run: |
