@@ -22,7 +22,10 @@ jobs:
           git merge master --no-ff
 
       - name: Install FFMPEG
-        run: sudo apt-get update && sudo apt-get install ffmpeg
+        run: sudo apt-get update && sudo apt-get install ffmpeg curl
+
+      - name: Download sample video
+        run: curl -o sample.mp4 http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
 
       - name: Remove old sample
         run: rm -rf sample
